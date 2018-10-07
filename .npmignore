@@ -9,3 +9,4 @@ examples
 .prettierignore
 .prettierrc
 assets
+jest.js
