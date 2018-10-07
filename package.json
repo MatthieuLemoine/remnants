@@ -1,0 +1,46 @@
+{
+  "name": "remnants",
+  "version": "1.0.0",
+  "description": "Find unused files. Spot these residues, leftovers, relics of an ancient past.",
+  "main": "index.js",
+  "module": "src/index.js",
+  "repository": "https://github.com/MatthieuLemoine/remnants",
+  "author": "MatthieuLemoine",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.1.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "prettier-eslint-cli": "^4.7.1"
+  },
+  "scripts": {
+    "test": "./jest.js",
+    "lint": "eslint .",
+    "prettify": "prettier-eslint --write \"**/*.js*\" --list-different",
+    "pretty-check": "prettier-eslint \"**/*.js*\" --list-different",
+    "check-version": "node scripts/check-version.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "prettier-eslint --write --config .prettierrc",
+        "eslint --fix",
+        "git add"
+      ],
+      "*.json": [
+        "prettier-eslint --write --config .prettierrc",
+        "git add"
+      ]
+    }
+  }
+}
