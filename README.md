@@ -12,7 +12,7 @@ And :fire: them. Death to legacy & dead code :skull:
 
 🏭 Is your project so bloated that you're afraid to delete a file ? ✅
 
-**Remnants** find those relics for you so than you can :fire: them in peace.
+**Remnants** find those relics for you so that you can :fire: them in peace.
 
 ## Universal
 
