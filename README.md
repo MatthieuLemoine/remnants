@@ -1,6 +1,6 @@
 # Remnants [![CircleCI](https://circleci.com/gh/MatthieuLemoine/remnants/tree/master.svg?style=svg)](https://circleci.com/gh/MatthieuLemoine/remnants/tree/master)
 
-Find unused files. Spot these residues, leftovers, relics of an ancient past.
+Find unused files and dependencies. Spot these residues, leftovers, relics of an ancient past.
 
 And :fire: them. Death to legacy & dead code :skull:
 
@@ -8,7 +8,7 @@ And :fire: them. Death to legacy & dead code :skull:
 
 :recycle: Did you recently refactor parts of your awesome project ? ✅
 
-🧓 Is your project so old (more than 2 months old) that you can't even remember why some files exist ? ✅
+🧓 Is your project so old (more than 2 months old) that you can't even remember why some files & dependencies exist ? ✅
 
 🏭 Is your project so bloated that you're afraid to delete a file ? ✅
 
@@ -31,13 +31,35 @@ npm i -g remnants
 In your project directory
 
 ```
-remnants
+remnants --sourceDirectories src
 ```
+
+`sourceDirectories` are the folders where you want **Remnants** to look for unused files.
+
+## Example
+
+Running **Remnants** on itself 🤯
+
+![screenshot](assets/failure.png)
+
+:scream: Look at these remnants! :rage:
+
+Let :fire: them all!
+
+...
+
+Done ✅
+
+![screenshot](assets/screenshot.png)
+
+Yeah no unused files or dependencies :tada:
+
+Thanks **Remnants** !
 
 ## Advance usage
 
 ```
-remnants
+remnants --sourceDirectories src --sourceDirectories lib --projectRoot /Users/remnants/dev/awesome-project
 ```
 
 ## Related

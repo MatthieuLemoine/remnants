@@ -9,9 +9,8 @@
   },
   "rules": {
     "no-underscore-dangle": 0,
-    "no-use-before-define": [
-      "error",
-      { "functions": false, "classes": true, "variables": true }
-    ]
+    "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
+    "import/no-dynamic-require": 0,
+    "max-len": 0
   }
 }
