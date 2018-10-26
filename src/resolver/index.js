@@ -57,7 +57,10 @@ const findImports = filePaths => filePaths.map((filePath) => {
     if (found[1][0] === '.') {
       founds.push(found[1]);
     } else {
-      usedDependencies[found[1]] = true;
+      const splits = found[1].split('/');
+      usedDependencies[
+        found[1][0] === '@' ? splits.slice(0, 2).join('/') : splits[0]
+      ] = true;
     }
     found = importRegex.exec(content);
   }
@@ -66,7 +69,10 @@ const findImports = filePaths => filePaths.map((filePath) => {
     if (found[1][0] === '.') {
       founds.push(found[1]);
     } else {
-      usedDependencies[found[1]] = true;
+      const splits = found[1].split('/');
+      usedDependencies[
+        found[1][0] === '@' ? splits.slice(0, 2).join('/') : splits[0]
+      ] = true;
     }
     found = requireRegex.exec(content);
   }
