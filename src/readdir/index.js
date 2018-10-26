@@ -1,3 +1,12 @@
-import recursive from 'recursive-readdir';
+import deglob from 'deglob';
+import { promisify } from 'util';
 
-export default (sources, exclude) => Promise.all(sources.map(directory => recursive(directory, exclude)));
+const readdir = promisify(deglob);
+
+export default (sources, exclude) => Promise.all(
+  sources.map(directory => readdir('**/*', {
+    cwd: directory,
+    ignore: exclude,
+    useGitIgnore: true,
+  })),
+);

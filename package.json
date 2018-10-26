@@ -1,6 +1,6 @@
 {
   "name": "remnants",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find unused files. Spot these residues, leftovers, relics of an ancient past.",
   "main": "index.js",
   "module": "src/index.js",
@@ -13,6 +13,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "conductor": "^1.4.1",
+    "deglob": "^3.1.0",
     "esm": "^3.0.84",
     "ora": "^3.0.0",
     "recursive-readdir": "^2.2.2",
