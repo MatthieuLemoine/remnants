@@ -1,6 +1,8 @@
 import path from 'path';
 import yargs from 'yargs';
 import ora from 'ora';
+import fs from 'fs-extra';
+import chalk from 'chalk';
 import { filesReport, dependenciesReport } from './reporter';
 import resolve from './resolver';
 import readdir from './readdir';
@@ -10,6 +12,7 @@ const { argv } = yargs.array('sourceDirectories');
 const {
   projectRoot: relativeRoot = process.cwd(),
   sourceDirectories = [],
+  remove,
 } = argv;
 
 const projectRoot = path.resolve(relativeRoot);
@@ -25,12 +28,22 @@ const spinner = ora('Looking for remnants').start();
 const { usedFiles, usedDependencies } = resolve(projectRoot);
 
 (async () => {
-  const files = await readdir(sourceDirectories);
+  const directories = await readdir(sourceDirectories);
   const unusedDependencies = [
     ...Object.keys(manifest.dependencies || {}),
   ].filter(item => !usedDependencies[item]);
-  const unusedFiles = files.map(item => item.filter(filePath => !usedFiles[path.join(projectRoot, filePath)]));
+  const unusedFiles = directories.map(files => files.filter(filePath => !usedFiles[path.join(projectRoot, filePath)]));
   spinner.stop();
   filesReport(projectRoot, sourceDirectories, unusedFiles);
   dependenciesReport(unusedDependencies);
+  if (remove) {
+    const filesToDelete = unusedFiles.reduce(
+      (acc, files) => [...acc, ...files],
+      [],
+    );
+    await Promise.all(filesToDelete.map(file => fs.remove(file)));
+    process.stdout.write(
+      chalk.green(`\n🔥 ${filesToDelete.length} files deleted.\n`),
+    );
+  }
 })();

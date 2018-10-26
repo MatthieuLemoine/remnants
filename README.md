@@ -56,6 +56,12 @@ Yeah no unused files or dependencies :tada:
 
 Thanks **Remnants** !
 
+## Remove unused files
+
+```
+remnants --sourceDirectories src --remove
+```
+
 ## Advance usage
 
 ```
