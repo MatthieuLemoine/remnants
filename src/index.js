@@ -7,12 +7,13 @@ import { filesReport, dependenciesReport } from './reporter';
 import resolve from './resolver';
 import readdir from './readdir';
 
-const { argv } = yargs.array('sourceDirectories');
+const { argv } = yargs.array('sourceDirectories').array('exclude');
 
 const {
   projectRoot: relativeRoot = process.cwd(),
   sourceDirectories = [],
   remove,
+  exclude = [],
 } = argv;
 
 const projectRoot = path.resolve(relativeRoot);
@@ -28,7 +29,7 @@ const spinner = ora('Looking for remnants').start();
 const { usedFiles, usedDependencies } = resolve(projectRoot);
 
 (async () => {
-  const directories = await readdir(sourceDirectories);
+  const directories = await readdir(sourceDirectories, exclude);
   const unusedDependencies = [
     ...Object.keys(manifest.dependencies || {}),
   ].filter(item => !usedDependencies[item]);

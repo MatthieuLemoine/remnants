@@ -65,7 +65,7 @@ remnants --sourceDirectories src --remove
 ## Advance usage
 
 ```
-remnants --sourceDirectories src --sourceDirectories lib --projectRoot /Users/remnants/dev/awesome-project
+remnants --sourceDirectories src --sourceDirectories lib --projectRoot /Users/remnants/dev/awesome-project --exclude **/*@*x.png
 ```
 
 ## Related
